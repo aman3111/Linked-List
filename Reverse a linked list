@@ -1,0 +1,34 @@
+Given the head of a linked list, the task is to reverse this list and return the reversed head.
+
+Examples:
+
+Input: head: 1 -> 2 -> 3 -> 4 -> NULL
+Output: 4 3 2 1
+
+
+JAVA CODE:
+
+
+/*
+class Node {
+    int data;
+    Node next;
+    Node(int value) {
+        this.value = value;
+    }
+}
+*/
+
+class Solution {
+    Node reverseList(Node head) {
+        // code here
+        Node prev = null, curr = head, next = null;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+}
