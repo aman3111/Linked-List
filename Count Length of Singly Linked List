@@ -1,0 +1,29 @@
+10 → 20 → 30 → 40 → null
+
+JAVA CODE:
+
+
+/*
+class Node {
+    int data;
+    Node next;
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public int getCount(Node head) {
+        int count = 0;
+        Node temp = head;
+
+        while (temp != null) {   // traverse until end
+            count++;
+            temp = temp.next;
+        }
+
+        return count;
+    }
+}
