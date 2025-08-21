@@ -1,0 +1,45 @@
+You are given the head of singly linked list and an integer x. Delete the xth node (1-based indexing) from the singly linked list.
+
+Examples:
+
+Input: x = 3,
+       
+Output: 1 -> 3
+
+
+JAVA CODE:
+
+
+/*
+class Node
+{
+    int data;
+    Node next;
+
+    Node(int d)
+    {
+        this.data = d;
+        this.next = null;
+    }
+}
+*/
+class Solution {
+    Node deleteNode(Node head, int x) {
+        if(head == null) return null;
+        
+        if(x == 1){
+            return head.next;
+        }
+        
+        Node temp = head;
+        for(int i = 1;temp.next != null && i < x - 1;i++){
+            temp = temp.next;
+        }
+        if(temp != null && temp.next != null){
+            temp.next = temp.next.next;
+        }
+        return head;
+    }
+}
+
+}
