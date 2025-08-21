@@ -1,0 +1,33 @@
+You are given the head of a Singly Linked List and a value x, insert that value x at the beginning of the LinkedList and return the head of modified Linked List.
+
+Examples :
+
+Input: x = 6
+     
+Output: 6 -> 1 -> 2 -> 3 -> 4 -> 5
+
+
+
+JAVA CODE:
+
+
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public Node insertAtFront(Node head, int x) {
+        // code here
+        Node newNode = new Node(x);
+        newNode.next = head;
+        return newNode;
+    }
+}
