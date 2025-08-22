@@ -1,0 +1,52 @@
+/*
+class Node {
+    int data;
+    Node next;
+}
+*/
+
+class Solution {
+    public static void removeLoop(Node head) {
+        if (head == null || head.next == null) return;
+
+        Node slow = head, fast = head;
+
+        // Step 1: Detect loop using Floyd’s cycle detection
+        boolean isCycle = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                isCycle = true;
+                break;
+            }
+        }
+
+        // Step 2: If no cycle, return
+        if (!isCycle) return;
+
+        // Step 3: Find start of loop
+        slow = head;
+
+        // Special case: If loop starts at head
+        if (slow == fast) {
+            while (fast.next != slow) {
+                fast = fast.next;
+            }
+            fast.next = null;  // Break loop
+            return;
+        }
+
+        // General case
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // Step 4: Break the loop
+        prev.next = null;
+    }
+}
