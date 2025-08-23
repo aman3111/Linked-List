@@ -58,7 +58,7 @@ public class j {
         s1.insertFront(10);
         s1.insertFront(20);
         s1.insertFront(30);
-        s1.insertFront(80);
+        s1.insertBack(80);
         s1.display();
     }
 }
