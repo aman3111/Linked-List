@@ -1,0 +1,58 @@
+Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes 
+(i.e., only nodes themselves may be changed.)
+
+ 
+
+Example 1:
+
+Input: head = [1,2,3,4]
+
+Output: [2,1,4,3]
+
+
+JAVA CODE:
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        ListNode fir = head;
+        ListNode sec = head.next;
+        ListNode prev = null;
+
+        while (fir != null && sec != null) {
+            ListNode third = sec.next;
+
+            // swap fir and sec
+            sec.next = fir;
+            fir.next = third;
+
+            // connect with previous part
+            if (prev != null) {
+                prev.next = sec;
+            } else {
+                head = sec; // update head for the first swap
+            }
+
+            // move pointers forward
+            prev = fir;
+            fir = third;
+            if (third != null) {
+                sec = third.next;
+            } else {
+                sec = null;
+            }
+        }
+        return head;
+    }
+}
