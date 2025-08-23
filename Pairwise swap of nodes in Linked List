@@ -1,0 +1,45 @@
+Given the head of a singly linked list containing positive integers, your task is to swap the data of every two adjacent nodes in the list. Return the head of the 
+modified linked list after performing pairwise swaps.
+
+Examples:
+
+Input:
+
+Output: 2->1->4->3->6->5->7 
+Explanation:The linked list after swapping becomes:
+
+
+
+JAVA CODE:
+
+
+/*class Node {
+
+        int data;
+        Node next;
+
+        Node(int d) {
+            data = d;
+            next = null;
+        }
+    } */
+class Solution {
+    public Node pairwiseSwap(Node head) {
+        if (head == null || head.next == null) return head;
+
+        Node curr = head;
+        while (curr != null && curr.next != null) {
+            // swap data
+            int temp = curr.data;
+            curr.data = curr.next.data;
+            curr.next.data = temp;
+
+            // move two steps ahead
+            curr = curr.next.next;
+        }
+        return head;
+    }
+}
+
+
+
