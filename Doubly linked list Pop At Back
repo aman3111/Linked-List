@@ -1,0 +1,105 @@
+JAVA CODE:
+
+class Node {
+    int data;
+    Node next, prev;
+
+    Node(int data) {
+        this.data = data;
+        this.next = this.prev = null;
+    }
+}
+
+class Solution {
+    Node head;
+
+    public void insertFront(int x) {
+        Node newNode = new Node(x);
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }
+
+    }
+
+    public void insertBack(int x) {
+        Node newNode = new Node(x);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.next = newNode;
+        newNode.prev = curr;
+
+    }
+
+    public void popFront() {
+
+        Node temp = head;
+        head = head.next;
+        if (head != null) {
+            head.prev = null;
+        }
+        temp.next = null;
+
+    }
+
+    public void popBack() {
+        if (head == null) {
+            head = null;
+            return;
+        }
+
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+        Node curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.prev.next = null; // unlink last node
+        curr.prev = null;
+
+    }
+
+    public void display() {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " <-> ");
+            curr = curr.next;
+        }
+        System.out.print("null");
+    }
+}
+
+public class j {
+
+    public static void main(String[] args) {
+        Solution s1 = new Solution();
+
+        s1.insertFront(10);
+        s1.insertFront(20);
+        s1.insertFront(30);
+        s1.insertBack(80);
+
+        s1.popFront();
+
+        s1.popBack();
+        s1.display();
+    }
+}
+
+OUTPUT:
+
+20 <-> 10 <-> 80 <-> null
+
+20 <-> 10 <-> null
+
