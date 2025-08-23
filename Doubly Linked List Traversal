@@ -1,0 +1,45 @@
+Given a doubly linked list of n elements. The task is to return the doubly linked list as an array.
+
+Note: The driver code will print the list forward and backward.
+
+Examples:
+
+Input: LinkedList: 1<->2<->3<->4<->5
+Output:
+[1, 2, 3, 4, 5]
+[5, 4, 3, 2, 1]
+
+
+
+JAVA CODE:
+
+
+// User function Template for Java
+
+/*
+class Node
+{
+    int data;
+    Node next, prev;
+    Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+*/
+class Solution {
+    public static ArrayList<Integer> displayList(Node head) {
+        // your code here
+        ArrayList<Integer> res = new ArrayList<>();
+        
+        Node curr = head;
+        while(curr != null){
+            res.add(curr.data);
+            curr = curr.next;
+            
+        }
+        return res;
+    }
+}
