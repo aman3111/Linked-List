@@ -1,0 +1,71 @@
+Given a circular linked list of size N and an integer x. Your task is insert a new node with value x at the end of linked list. You are required to complete the functio
+n insert_at_end(head, x) which accepts the head circular linked list and x as an argument.
+
+Input:
+The input line contains T, denoting the number of testcases. Each testcase contains two lines. The first line contains N(size of circular linked list) and x(value as a node
+to inserted) separated by space. The second line contains N elements of the linked list separated by space.
+
+Output:
+For each testcase in new line, print the new circular linked list.
+
+User task:
+Since this is a functional problem you don't have to worry about the input, you just have to complete the function insert_at_end().
+
+Constraint:
+1 <= T <= 100
+1 <= N, x <= 103
+1 <= node value <= 104
+
+Example:
+Input:
+2
+5 9
+1 2 3 4 6
+6 7
+1 2 3 4 5 6
+
+Output:
+1 2 3 4 6 9
+1 2 3 4 5 6 7
+
+Explanation:
+Testcase 1: The value 9 is to be inserted in the given circular linked list 1 2 3 4 6. The new circular linked list after inserting node at end is 1 2 3 4 6 9.
+
+
+JAVA CODE:
+
+
+/* create class Node
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+*/
+
+class gfg {
+    static Node insert_at_end(Node head, int x) {
+        Node newNode = new Node(x);
+
+        // case 1: empty list
+        if (head == null) {
+            newNode.next = newNode;
+            return newNode;
+        }
+
+        // case 2: non-empty list → traverse to last node
+        Node tail = head;
+        while (tail.next != head) {
+            tail = tail.next;
+        }
+
+        // link newNode at end
+        tail.next = newNode;
+        newNode.next = head;
+
+        return head;
+    }
+}
