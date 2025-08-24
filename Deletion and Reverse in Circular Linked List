@@ -1,0 +1,79 @@
+JAVA CODE:
+
+/*class Node
+{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;next=null;
+    }
+}*/
+
+class Solution {
+    // Function to reverse a circular linked list
+    Node reverse(Node head) {
+        // code here
+        if (head == null || head.next == head) return head; // empty or single node
+
+        Node prev = null, curr = head, next = null;
+        Node tail = head;
+
+        // find the last node
+        while (tail.next != head) {
+            tail = tail.next;
+        }
+
+        Node stop = head;  // stop when we come back to head
+        do {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        } while (curr != stop);
+
+        // reconnect last node
+        head.next = prev;  
+        head = prev;
+
+        return head;
+    }
+
+    // Function to delete a node from the circular linked list
+    Node deleteNode(Node head, int key) {
+        
+        // code here
+        if (head == null) return null;
+
+        Node curr = head, prev = null;
+
+        // Case 1: if head node itself holds the key
+        if (head.data == key) {
+            // If only one node
+            if (head.next == head) {
+                return null;
+            }
+            // find the last node
+            Node tail = head;
+            while (tail.next != head) {
+                tail = tail.next;
+            }
+            head = head.next;
+            tail.next = head;
+            return head;
+        }
+        prev = head;
+        curr = head.next;
+        while (curr != head) {
+            if (curr.data == key) {
+                prev.next = curr.next;
+                return head;
+            }
+            prev = curr;
+            curr = curr.next;
+        }
+
+        // key not found
+        return head;
+    }
+}
